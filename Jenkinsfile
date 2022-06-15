@@ -9,23 +9,23 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh './jenkins/build.sh'
+        bat './jenkins/build.sh'
       }
     }
     stage('Login') {
       steps {
-        sh './jenkins/login.sh'
+        bat './jenkins/login.sh'
       }
     }
     stage('Push') {
       steps {
-        sh './jenkins/push.sh'
+        bat './jenkins/push.sh'
       }
     }
   }
   post {
     always {
-      sh './jenkins/logout.sh'
+      bat './jenkins/logout.sh'
     }
   }
 }
