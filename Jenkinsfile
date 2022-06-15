@@ -9,23 +9,23 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t tredia/dp-alpine:latest .'
+        bat 'docker build -t tredia/dp-alpine:latest .'
       }
     }
     stage('Login') {
       steps {
-        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
     stage('Push') {
       steps {
-        sh 'docker push tredia/dp-alpine:latest'
+        bat 'docker push tredia/dp-alpine:latest'
       }
     }
   }
   post {
     always {
-      sh 'docker logout'
+      bat 'docker logout'
     }
   }
 }
